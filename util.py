@@ -38,12 +38,12 @@ def main():
                 if b'&Col05' in device['path']:
                     if request_path != b'':
                         raise Exception(
-                            f"Multiple request devices found: {request_path} and {device['path'].decode()}")
+                            f"Multiple request devices found: {request_path.decode()} and {device['path'].decode()}")
                     request_path = device['path']
                 elif b'&Col06' in device['path']:
                     if data_path != b'':
                         raise Exception(
-                            f"Multiple data devices found: {data_path} and {device['path'].decode()}")
+                            f"Multiple data devices found: {data_path.decode()} and {device['path'].decode()}")
                     data_path = device['path']
         if not request_path:
             raise Exception('No request device found')
