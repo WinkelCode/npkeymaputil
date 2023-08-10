@@ -32,7 +32,8 @@ def main():
         request_path = b''
         data_path = b''
         devices = hid.enumerate(vendor, product)
-        assert len(devices) > 0, 'No devices found'
+        if not devices:
+            raise Exception(f'No devices matching VID: {vendor:04x} PID: {product:04x} found')
         for device in devices:
             if device['interface_number'] != -1 and device['usage'] == 1 and device['usage_page'] == int(0xff00):
                 if b'&Col05' in device['path']:
